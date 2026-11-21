@@ -78,7 +78,7 @@ terraform apply -var="zone_id=YOUR_ZONE_ID"
 For comprehensive edge security assessments, NZISM alignment, or managed security architecture:
 
 * **Corporate Portal:** [TAVARDT New Zealand](https://ag.tavardt.com/nz/cybersecurity/)
-* **Technical Contact:** [Schedule Technical Consultation](https://ag.tavardt.com/nz/contact/)
+* **Technical Contact:** [Contact Engineering Team](https://ag.tavardt.com/nz/contact/)
 
 ---
 
