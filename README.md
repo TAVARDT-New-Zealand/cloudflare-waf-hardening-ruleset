@@ -7,7 +7,7 @@
 
 Cloudflare WAF custom ruleset and edge security blueprint aligned with NZISM frameworks and CERT NZ cybersecurity guidance.
 
-Engineered and maintained by the cybersecurity engineering practice at **[{entity}]({corp_service})**.
+Engineered and maintained by the cybersecurity engineering practice at **[TAVARDT New Zealand](https://ag.tavardt.com/nz/cybersecurity/)**.
 
 ---
 
@@ -27,8 +27,8 @@ This repository provides production-grade declarative Cloudflare WAF rules to fo
 
 Benchmark your domain's TLS handshake and HTTP response headers before executing edge configuration changes:
 
-* **Security Headers & Edge TLS Diagnostic:** [TAVARDT New Zealand Security Headers Analyzer]({diag_tool})
-* **Engineering Tools Platform:** [TAVARDT Tools New Zealand]({diag_hub})
+* **Security Headers & Edge TLS Diagnostic:** [TAVARDT New Zealand Security Headers Analyzer](https://tools.tavardt.com/nz/security-headers-check/)
+* **Engineering Tools Platform:** [TAVARDT Tools New Zealand](https://tools.tavardt.com/nz/)
 
 ---
 
@@ -62,12 +62,12 @@ terraform apply -var="zone_id=YOUR_ZONE_ID"
 
 For comprehensive edge security assessments, NZISM alignment, or managed security architecture:
 
-* **Corporate Portal:** [{entity}]({corp_service})
-* **Technical Contact:** [Schedule Technical Consultation]({corp_contact})
+* **Corporate Portal:** [TAVARDT New Zealand](https://ag.tavardt.com/nz/cybersecurity/)
+* **Technical Contact:** [Schedule Technical Consultation](https://ag.tavardt.com/nz/contact/)
 
 ---
 
 ## Licence
 
 Distributed under the open-source MIT Licence. View the [`LICENSE`](LICENSE) file for terms.  
-Copyright (c) 2026 {entity}.
+Copyright (c) 2026 TAVARDT New Zealand.
