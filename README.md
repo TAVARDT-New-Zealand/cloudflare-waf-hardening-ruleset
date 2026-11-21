@@ -9,6 +9,21 @@ Cloudflare WAF custom ruleset and edge security blueprint aligned with NZISM fra
 
 Engineered and maintained by the cybersecurity engineering practice at **[TAVARDT New Zealand](https://ag.tavardt.com/nz/cybersecurity/)**.
 
+> [!IMPORTANT]
+> **Universal & Stack-Agnostic Architecture:** This repository is **not exclusive to WordPress**. It is built for **REST APIs, microservices, modern web applications (Next.js, React), and backend infrastructure (Node.js, Python, Go, PHP, Java)**. The suppression of legacy CMS probes acts as an **active edge hygiene layer**, dropping background bot scans and exploit payloads at Cloudflare edge data centers (< 1ms) before reaching your origin compute.
+
+---
+
+### Multi-Stack Defence Matrix
+
+| Defence Layer | Mitigated Vectors | Protected Workloads & Environments |
+| :--- | :--- | :--- |
+| **Confidential Asset Isolation** | Perimeter drop for `.env`, `.git`, `.sql`, `package.json`, `composer.json` | **APIs, Next.js, Node.js, Python, Go, Laravel, React** |
+| **Scanner & Exploit Suppression** | Block automated suites (Nikto, SQLMap, Acunetix, Masscan, Nmap) | **Any production web service, microservice, or API** |
+| **HTTP Verb Sanitisation** | Boundary rejection of unsafe verbs (`TRACE`, `TRACK`, `DEBUG`) | **Production RESTful APIs and gateways** |
+| **Privileged Access Gating** | Automated challenges securing administrative entry (`/admin`, `/login`) | **Corporate management consoles, dashboards, ERPs** |
+| **Zero-Noise Edge Hygiene** | Edge drop for blind scans targeting `/xmlrpc.php` and trackbacks | **Complete protection of origin server capacity** |
+
 ---
 
 ## 1. Perimeter Security Architecture
