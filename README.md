@@ -1,4 +1,4 @@
-# Cloudflare WAF Hardening Ruleset & Edge Security Blueprint | TAVARDT New Zealand
+# Cloudflare WAF Hardening Ruleset & Edge Security Blueprint
 
 [![Licence MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Cloudflare WAF](https://img.shields.io/badge/Cloudflare-WAF%20Hardened-F38020.svg?logo=cloudflare)](https://cloudflare.com)
@@ -85,4 +85,4 @@ For comprehensive edge security assessments, NZISM alignment, or managed securit
 ## Licence
 
 Distributed under the open-source MIT Licence. View the [`LICENSE`](LICENSE) file for terms.  
-Copyright (c) 2026 TAVARDT New Zealand.
+Copyright (c) 2026 TAVARDT.
