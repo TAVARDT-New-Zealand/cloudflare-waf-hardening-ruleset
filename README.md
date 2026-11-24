@@ -7,7 +7,7 @@
 
 Cloudflare WAF custom ruleset and edge security blueprint aligned with NZISM frameworks and CERT NZ cybersecurity guidance.
 
-Engineered and maintained by the cybersecurity engineering practice at **TAVARDT New Zealand**.
+Engineered and maintained by the cybersecurity engineering practice at **TAVARDT**.
 
 > [!IMPORTANT]
 > **Universal & Stack-Agnostic Architecture:** This repository is **not exclusive to WordPress**. It is built for **REST APIs, microservices, modern web applications (Next.js, React), and backend infrastructure (Node.js, Python, Go, PHP, Java)**. The suppression of legacy CMS probes acts as an **active edge hygiene layer**, dropping background bot scans and exploit payloads at Cloudflare edge data centers (< 1ms) before reaching your origin compute.
@@ -42,7 +42,7 @@ This repository provides production-grade declarative Cloudflare WAF rules to fo
 
 Benchmark your domain's TLS handshake and HTTP response headers before executing edge configuration changes:
 
-* **Security Headers & Edge TLS Diagnostic:** **TAVARDT New Zealand Security Headers Analyzer**
+* **Security Headers & Edge TLS Diagnostic:** **TAVARDT Security Headers Analyzer**
 * **Engineering Tools Platform:** **TAVARDT Tools New Zealand**
 
 ***
@@ -77,7 +77,7 @@ terraform apply -var="zone_id=YOUR_ZONE_ID"
 
 For comprehensive edge security assessments, NZISM alignment, or managed security architecture:
 
-* **Corporate Portal:** **TAVARDT New Zealand**
+* **Corporate Portal:** **TAVARDT**
 * **Technical Contact:** [Contact Engineering Team](https://ag.tavardt.com/nz/contact/)
 
 ***
@@ -85,4 +85,8 @@ For comprehensive edge security assessments, NZISM alignment, or managed securit
 ## Licence
 
 Distributed under the open-source MIT Licence. View the [`LICENSE`](LICENSE) file for terms.  
-Copyright (c) 2026 TAVARDT.
+Copyright
+
+***
+
+© 2026 TAVARDT. All rights reserved.
