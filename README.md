@@ -90,10 +90,9 @@ For comprehensive edge security assessments, NZISM alignment, or managed securit
 
 ***
 
-## Licence
+### Licence
 
-Distributed under the open-source MIT Licence. View the [`LICENSE`](LICENSE) file for terms.  
-Copyright
+Distributed under the open-source MIT Licence. View the [`LICENSE`](LICENSE) file for terms.
 
 ***
 
