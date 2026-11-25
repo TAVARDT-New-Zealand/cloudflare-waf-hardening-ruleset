@@ -4,73 +4,94 @@
 [![Diagnostics Suite](https://img.shields.io/badge/TAVARDT-Diagnostics-5b3cf5.svg)](https://tools.tavardt.com/nz/security-headers-check/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-Cloudflare WAF custom ruleset and edge security blueprint aligned with NZISM frameworks and CERT NZ cybersecurity guidance.
+***
+
+Production-grade Cloudflare WAF custom ruleset, bot defense, and edge security blueprint engineered by **TAVARDT**, aligned with NZISM, Privacy Act 2020, and SOC 2 baseline controls.
 
 > [!IMPORTANT]
-> **Universal & Stack-Agnostic Architecture:** This repository is **not exclusive to WordPress**. It is built for **REST APIs, microservices, modern web applications (Next.js, React), and backend infrastructure (Node.js, Python, Go, PHP, Java)**. The suppression of legacy CMS probes acts as an **active edge hygiene layer**, dropping background bot scans and exploit payloads at Cloudflare edge data centers (< 1ms) before reaching your origin compute.
+> **Universal & Stack-Agnostic Edge Architecture:** This ruleset is not limited to WordPress or monolithic frameworks. It is engineered to safeguard modern REST APIs, microservices, SPA frontends (Next.js, React, Vue), and backends (Node.js, Python, Go, Laravel, Java). Blocking legacy CMS probes operates as an active edge hygiene layer, dropping automated botnet noise directly at Cloudflare edge data centers in under 1ms before requests consume origin TCP sockets, memory, or CPU.
 
 ***
 
-### Multi-Stack Defence Matrix
+## Core Capabilities and Defensive Architecture
 
-| Defence Layer | Mitigated Vectors | Protected Workloads & Environments |
-| :- | :- | :- |
-| **Confidential Asset Isolation** | Perimeter drop for `.env`, `.git`, `.sql`, `package.json`, `composer.json` | **APIs, Next.js, Node.js, Python, Go, Laravel, React** |
-| **Scanner & Exploit Suppression** | Block automated suites (Nikto, SQLMap, Acunetix, Masscan, Nmap) | **Any production web service, microservice, or API** |
-| **HTTP Verb Sanitisation** | Boundary rejection of unsafe verbs (`TRACE`, `TRACK`, `DEBUG`) | **Production RESTful APIs and gateways** |
-| **Privileged Access Gating** | Automated challenges securing administrative entry (`/admin`, `/login`) | **Corporate management consoles, dashboards, ERPs** |
-| **Zero-Noise Edge Hygiene** | Edge drop for blind scans targeting `/xmlrpc.php` and trackbacks | **Complete protection of origin server capacity** |
+* **Perimeter Credential Isolation**: Immediately blocks edge access to `.env`, `.git`, `.sql`, `config.json`, `package.json`, and `composer.json` before requests reach origin infrastructure.
+* **Reconnaissance Engine Suppression**: Intercepts automated vulnerability scanners (Nikto, SQLMap, Acunetix, Masscan, Zgrab, Nmap, DirBuster, Gobuster) at the Cloudflare edge.
+* **Stack-Agnostic Edge Hygiene**: Drops legacy CMS attack vectors (`/xmlrpc.php`, trackbacks) in under 1ms, preventing automated bot noise from consuming origin server TCP sockets and memory.
+* **HTTP Method Sanitization**: Rejects non-standard or dangerous debug methods (`TRACE`, `TRACK`, `DEBUG`) directly at the edge firewall boundary.
+* **Adaptive Administrative Gating**: Imposes Cloudflare Managed Challenges on administrative login endpoints (`/admin`, `/wp-login.php`, `/administrator`) while allowing internal ASN traffic.
 
 ***
 
-## 1. Perimeter Security Architecture
+## Threat Vectors and Operational Impact
 
-This repository provides production-grade declarative Cloudflare WAF rules to fortify public web infrastructure against unauthorised reconnaissance, data harvesting, and exploit attempts:
+Deploying web applications and public APIs without declarative edge filtering exposes origin servers to constant automated probing and resource depletion. The ruleset mitigates five primary threat vectors at the CDN perimeter:
 
-* **Confidential Asset & Environment Protection:** Direct edge dropping of requests for `.env` secrets, `.git` version control data, `.sql` backups, and package manifests (`composer.json`, `package.json`).
-* **Reconnaissance & Exploit Scanner Mitigation:** Real-time edge suppression of automated vulnerability discovery suites (Nikto, SQLMap, Acunetix, Masscan, Nmap, Gobuster, DirBuster).
-* **CMS Attack Surface Hardening:** Active blocking of amplification and brute-force endpoints including `/xmlrpc.php` and `/wp-trackback.php`.
-* **Dangerous HTTP Method Blocking:** Rejection of testing or tracing verbs at the CDN layer (`TRACE`, `TRACK`, `DEBUG`).
-* **Managed Challenge on Administrative Access:** Frictionless automated challenges securing privileged administration dashboards (`/wp-login.php`, `/admin`).
-
-***
-
-## 2. Security Diagnostic Suite
-
-Benchmark your domain's TLS handshake and HTTP response headers before executing edge configuration changes:
-
-* **Security Headers & Edge TLS Diagnostic:** **TAVARDT Security Headers Analyzer**
-* **Engineering Tools Platform:** **TAVARDT Tools New Zealand**
+* **Environment and Credential Disclosure (TAVARDT-WAF-01)**: Exploitation of misconfigured origins to download production secrets, Git histories, and database dumps.
+* **Automated Exploit Scanners (TAVARDT-WAF-02)**: Aggressive automated probing that inflates origin bandwidth, exhausts server CPU, and discovers unpatched vulnerabilities.
+* **CMS Amplification and Brute Force (TAVARDT-WAF-03 & TAVARDT-WAF-05)**: Botnets attempting distributed denial-of-service amplification via XML-RPC pingbacks or credential stuffing on administrative portals.
+* **Protocol Abuse via Verb Tampering (TAVARDT-WAF-04)**: Attackers leveraging non-standard HTTP methods to bypass caching, exploit cross-site tracing (XST), or probe debugging endpoints.
+* **Resource Depletion and Origin Starvation**: Unfiltered malicious edge traffic consuming application worker threads, leading to slow response times and service outages for legitimate users.
 
 ***
 
-## 3. Rapid Deployment
+## Deployment and Edge Automation
 
-### Option A: Deployment via Cloudflare API v4
+Deploy the hardening ruleset using declarative Cloudflare API v4 ingestion or infrastructure-as-code through Terraform:
 
-Apply the structured ruleset [`rules/ruleset.json`](rules/ruleset.json):
+### Option A: Direct Ingestion via Cloudflare API v4
 
 ```bash
+# Deploy custom WAF ruleset via Cloudflare API v4
 curl -X PUT "https://api.cloudflare.com/client/v4/zones/YOUR_ZONE_ID/rulesets/phases/http_request_firewall_custom/entrypoint" \
-     -H "Authorization: Bearer YOUR_CLOUDFLARE_API_TOKEN" \
-     -H "Content-Type: application/json" \
-     -data @rules/ruleset.json
+  -H "Authorization: Bearer YOUR_CLOUDFLARE_API_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d @rules/ruleset.json
 ```
 
-### Option B: Declarative Management with Terraform
-
-Utilise the Terraform infrastructure file in [`terraform/main.tf`](terraform/main.tf):
+### Option B: Declarative Provisioning via Terraform
 
 ```bash
+# Navigate to Terraform module directory
 cd terraform
+
+# Initialize Cloudflare provider
 terraform init
+
+# Plan declarative ruleset deployment
 terraform plan -var="zone_id=YOUR_ZONE_ID"
+
+# Apply edge firewall configuration
 terraform apply -var="zone_id=YOUR_ZONE_ID"
 ```
 
 ***
 
-## 4. Useful Links
+## Frequently Asked Technical Questions
+
+### Which threat vectors does the Cloudflare WAF hardening ruleset mitigate at the CDN edge?
+
+The ruleset terminates automated reconnaissance scanners, sensitive file and environment variable exposure, WordPress XML-RPC abuse, and non-standard HTTP debug methods directly on Cloudflare edge servers. This edge-layer filtering drops malicious traffic in under 1 millisecond, shielding origin server CPU, memory, and database connections from automated botnet exhaustion.
+
+### Why is this WAF hardening blueprint recommended for modern REST APIs and microservices rather than just CMS platforms?
+
+Automated exploit scanners and credential scraping probes routinely target public endpoints regardless of whether the backend runs Node.js, Go, Python, or Next.js. Dropping blind CMS probes and sensitive path requests at the perimeter maintains zero-noise edge hygiene across any server architecture.
+
+### How does the ruleset prevent accidental disclosure of environment credentials and database dumps?
+
+The TAVARDT-WAF-01 rule immediately issues an HTTP 403 block for any request matching `.env`, `.git`, `.sql`, `composer.json`, or `package.json` paths. This deterministic edge block prevents misconfigured web servers or build artifacts from leaking private API keys and database structures.
+
+### How does the administrative gating rule challenge brute-force traffic while allowing authorized services?
+
+The TAVARDT-WAF-05 rule triggers Cloudflare Managed Challenges on sensitive administrative paths such as `/wp-login.php`, `/admin`, and `/administrator`. It explicitly whitelists internal Cloudflare ASN 13335 traffic, allowing authorized background services and monitoring probes to proceed without challenge friction.
+
+### What are the differences between deploying the ruleset via Cloudflare API v4 and using Terraform?
+
+Ingesting `rules/ruleset.json` via the Cloudflare API v4 endpoint provides immediate, zero-dependency deployment directly into the `http_request_firewall_custom` phase. Provisioning through the `terraform/main.tf` module enables declarative infrastructure-as-code management, automated drift detection, and reproducible rollouts across multi-zone production environments.
+
+***
+
+## Useful Links
 
 * **Corporate Portal:** https://ag.tavardt.com/nz/
 * **Diagnostic Suite:** https://tools.tavardt.com/nz/
@@ -78,9 +99,8 @@ terraform apply -var="zone_id=YOUR_ZONE_ID"
 
 ***
 
-### Licence
-
-Distributed under the open-source MIT Licence.
+### License
+Released under the MIT License. See [LICENSE](LICENSE) for full details.
 
 ***
 
