@@ -1,13 +1,10 @@
 # Cloudflare WAF Hardening Ruleset & Edge Security Blueprint
 
-[![Licence MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Cloudflare WAF](https://img.shields.io/badge/Cloudflare-WAF%20Hardened-F38020.svg?logo=cloudflare)](https://cloudflare.com)
-[![Language](https://img.shields.io/badge/Language-English%20(New%20Zealand)-green.svg)](README.md)
 [![Diagnostics Suite](https://img.shields.io/badge/TAVARDT-Diagnostics-5b3cf5.svg)](https://tools.tavardt.com/nz/security-headers-check/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 Cloudflare WAF custom ruleset and edge security blueprint aligned with NZISM frameworks and CERT NZ cybersecurity guidance.
-
-Engineered and maintained by the cybersecurity engineering practice at **TAVARDT**.
 
 > [!IMPORTANT]
 > **Universal & Stack-Agnostic Architecture:** This repository is **not exclusive to WordPress**. It is built for **REST APIs, microservices, modern web applications (Next.js, React), and backend infrastructure (Node.js, Python, Go, PHP, Java)**. The suppression of legacy CMS probes acts as an **active edge hygiene layer**, dropping background bot scans and exploit payloads at Cloudflare edge data centers (< 1ms) before reaching your origin compute.
@@ -73,16 +70,7 @@ terraform apply -var="zone_id=YOUR_ZONE_ID"
 
 ***
 
-## 4. Engineering Services & Advisory
-
-For comprehensive edge security assessments, NZISM alignment, or managed security architecture:
-
-* **Corporate Portal:** **TAVARDT**
-* **Technical Contact:** [Contact Engineering Team](https://ag.tavardt.com/nz/contact/)
-
-***
-
-## Useful Links
+## 4. Useful Links
 
 * **Corporate Portal:** https://ag.tavardt.com/nz/
 * **Diagnostic Suite:** https://tools.tavardt.com/nz/
@@ -92,7 +80,7 @@ For comprehensive edge security assessments, NZISM alignment, or managed securit
 
 ### Licence
 
-Distributed under the open-source MIT Licence. View the [`LICENSE`](LICENSE) file for terms.
+Distributed under the open-source MIT Licence.
 
 ***
 
